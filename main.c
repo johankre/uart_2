@@ -15,15 +15,15 @@ int main(){
 
     while(1){
         // Når knapp B trykkes
-        if(!(1 << 23) & GPIO0->IN){
+        if(!((1 << 23) & GPIO0->IN)){
             uart_send('B');
         }
 
         // Npr knapp A trykkes
-        if(!(1 << 14) & GPIO0->IN){
+        if(!((1 << 14) & GPIO0->IN)){
             uart_send('A');
         }
-        
+
     }
 
 
