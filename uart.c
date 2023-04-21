@@ -51,8 +51,8 @@ void uart_init(){
     // TX
     GPIO1->PIN_CNF[8] = 1;
 
-    UART->PSELRXD = 0b01111111111111111111111111000110;
-    UART->PSELTXD = 0b01111111111111111111111111101000;
+    UART->PSELTXD = 0b000110;
+    UART->PSELRXD = 0b101000;
 
     // Setter baudrate
     UART->BAUDRATE = 0x00275000;
@@ -74,6 +74,7 @@ void uart_send(char letter){
 
     }
     UART->TXDREADY = 0;
+    UART->TASKS_STOPTX = 1;
 }
 
 
