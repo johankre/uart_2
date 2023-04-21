@@ -13,6 +13,9 @@ int main(){
     // Init UART 
     uart_init();
 
+    // Lys tilstand
+    int state = 0;
+    
     while(1){
         // Når knapp B trykkes
         if(!((1 << 23) & GPIO0->IN)){
@@ -24,6 +27,16 @@ int main(){
             uart_send('A');
         }
 
+        if(uart_read() != '\0'){
+            if(state){
+                gpio_lights_off();
+                state--;
+            }
+            else {
+                gpio_lights_on();
+                state++;
+            }
+        }
     }
 
 
